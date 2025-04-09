@@ -11,18 +11,26 @@ encoder = joblib.load("../results/group_label_encoder.pkl")
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    # Convert to array in feature order
-    input_order = ['stand', 'balls', 'strikes', 'inning', 'outs_when_up',
-                   'runners_on', 'pitch_count', 'score_diff']
-    input_data = np.array([[data[feature] for feature in input_order]])
-    input_scaled = scaler.transform(input_data)
+        input_order = [
+            'stand', 'balls', 'strikes', 'inning', 'outs_when_up',
+            'on_1b', 'on_2b', 'on_3b',
+            'pitch_count', 'score_diff', 'is_home_team',
+            'batter_id', 'pitcher_id'
+        ]
 
-    pred_class = model.predict(input_scaled)[0]
-    pitch_group = encoder.inverse_transform([pred_class])[0]
+        input_data = np.array([[data[feature] for feature in input_order]])
+        input_scaled = scaler.transform(input_data)
 
-    return jsonify({"predicted_pitch_type_group": pitch_group})
+        pred_class = model.predict(input_scaled)[0]
+        pitch_group = encoder.inverse_transform([pred_class])[0]
+
+        return jsonify({"predicted_pitch_type_group": pitch_group})
+    
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
     app.run(debug=True)

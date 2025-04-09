@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+  }
+  
+  .container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .scoreboard,
+  .inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  .bases {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .base {
+    width: 60px;
+    height: 60px;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .base.active {
+    background: green;
+    color: white;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  #result {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .diamond {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 40px auto;
+  }
+  
+  .base {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .base.active {
+    background: green;
+    color: white;
+  }
+  
+  /* Position each base */
+  #base1 {
+    bottom: 0;
+    right: 0;
+  }
+  
+  #base2 {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #base3 {
+    bottom: 0;
+    left: 0;
+  }
+  

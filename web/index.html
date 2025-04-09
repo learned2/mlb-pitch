@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLB Pitch Predictor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>MLB Pitch Predictor</h1>
+
+    <div class="scoreboard">
+      <label>Home Score <input type="number" id="homeScore" /></label>
+      <label>Away Score <input type="number" id="awayScore" /></label>
+      <label>Balls <input type="number" id="balls" min="0" max="3" /></label>
+      <label>Strikes <input type="number" id="strikes" min="0" max="2" /></label>
+      <label>Pitch Count <input type="number" id="pitchCount" /></label>
+    </div>
+
+    <div class="diamond">
+        <div id="base2" class="base">2B</div>
+        <div id="base3" class="base">3B</div>
+        <div id="base1" class="base">1B</div>
+      </div>      
+
+    <div class="inputs">
+      <label>Inning <input type="number" id="inning" /></label>
+      <label>Outs <input type="number" id="outs" min="0" max="2" /></label>
+      <label>Batter Stance
+        <select id="stand">
+          <option value="0">Left</option>
+          <option value="1">Right</option>
+        </select>
+      </label>
+      <label>Is Home Team?
+        <select id="isHome">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </label>
+      <label>Pitcher
+        <select id="pitcherId">
+          <option value="123456">Pitcher A</option>
+          <option value="654321">Pitcher B</option>
+        </select>
+      </label>
+      <label>Batter
+        <select id="batterId">
+          <option value="234567">Batter A</option>
+          <option value="765432">Batter B</option>
+        </select>
+      </label>
+    </div>
+
+    <button onclick="predictPitch()">Predict Pitch</button>
+    <div id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+v
