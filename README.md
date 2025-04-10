@@ -45,8 +45,6 @@ To improve generalization, the model was trained using `class_weight='balanced'`
 
 Additional features such as `pitch_count`, `batter_id`, and `is_home_team` were removed during optimization due to low contribution or noise.
 
----
-
 ### Pitch Velocity Estimation
 
 Rather than training a regression model, average pitch speeds (MPH) were precomputed using historical Statcast data.
