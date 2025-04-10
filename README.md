@@ -7,7 +7,7 @@
 or  
 [📦 Watch the video demo](https://your-demo-video-link)
 
-![screenshot](demo/demo_screenshot.png)
+![screenshot](demo/demo-screenshot.png)
 
 
 ## 🔧 Features
