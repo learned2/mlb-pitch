@@ -1,112 +1,178 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to top left, rgb(2, 57, 27) , rgb(0, 0, 0) );
     padding: 20px;
   }
   
-  .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 800px;
-    margin: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  h1 {
+    color: #00ff00;
+  }
+
+  h3 {
+    color: #ffffff;
   }
   
-  .scoreboard,
-  .inputs {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  label {
+  .dashboard {
     display: flex;
     flex-direction: column;
-    font-weight: bold;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    transform: scale(1.2); /* SCALE EVERYTHING UP */
   }
   
-  .bases {
+  
+  .scoreboard {
     display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    background: #004400;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
   }
+  
+  .score-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .count-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  
+  .scoreboard label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .scoreboard input {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .score, .count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  
+  
+  .sidebar {
+    width: 250px;
+    background: #000000;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .sidebar label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  
+  input, select, button {
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  button {
+    background-color: #00ff00;
+    color: rgb(1, 53, 11);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0fd3a2;
+  }
+  
+  .field {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background: url("mlb-diamond.png") no-repeat center center;
+    background-size: contain;
+  }  
   
   .base {
-    width: 60px;
-    height: 60px;
-    background: #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+    position: absolute;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    background: rgba(200, 200, 200, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
   }
   
   .base.active {
-    background: green;
+    background: #00ff00;
     color: white;
   }
   
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background: #007bff;
-    color: white;
+  #base1 { bottom: 220px; right: 95px; }
+  #base2 { top: 150px; left: 50%; transform: translateX(-50%); }
+  #base3 { bottom: 220px; left: 95px; }
+  
+  .stance-toggle button {
+    width: 40px;
+    margin: 0 5px;
+    background-color: #ccc;
+    color: black;
     border: none;
-    border-radius: 5px;
+  }
+  
+  .stance-toggle button.selected {
+    background-color: #00ff00;
+    color: rgb(1, 53, 11);
+  }
+  
+  #resultBox {
+    text-align: center;
   }
   
   #result {
-    margin-top: 20px;
-    font-size: 20px;
+    margin-top: 10px;
+    background: #eee;
+    padding: 10px;
+    border-radius: 6px;
+    color: #018401;
     font-weight: bold;
-    text-align: center;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .diamond {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 40px auto;
-  }
-  
-  .base {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: #ccc;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .base.active {
-    background: green;
-    color: white;
-  }
-  
-  /* Position each base */
-  #base1 {
-    bottom: 0;
-    right: 0;
-  }
-  
-  #base2 {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  #base3 {
-    bottom: 0;
-    left: 0;
-  }
-  

@@ -1,63 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MLB Pitch Predictor</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
+<header> 
+    <h1>MLB Machine Learning Next Pitch Predictor</h1>
+    <h3>By: Stan U <br>
+        April 2025
+    </h3>
+</header>
 <body>
-  <div class="container">
-    <h1>MLB Pitch Predictor</h1>
-
+  <div class="dashboard">
+    <!-- Scoreboard -->
     <div class="scoreboard">
-      <label>Home Score <input type="number" id="homeScore" /></label>
-      <label>Away Score <input type="number" id="awayScore" /></label>
-      <label>Balls <input type="number" id="balls" min="0" max="3" /></label>
-      <label>Strikes <input type="number" id="strikes" min="0" max="2" /></label>
-      <label>Pitch Count <input type="number" id="pitchCount" /></label>
-    </div>
-
-    <div class="diamond">
-        <div id="base2" class="base">2B</div>
-        <div id="base3" class="base">3B</div>
-        <div id="base1" class="base">1B</div>
+        <div class="score-row">
+          <div class="score"><label>HOME</label><input type="number" id="homeScore" /></div>
+          <div class="score"><label>AWAY</label><input type="number" id="awayScore" /></div>
+        </div>
+      
+        <div class="score"><label>INNING</label><input type="number" id="inning" /></div>
+      
+        <div class="count-row">
+          <div class="count"><label>BALL</label><input type="number" id="balls" min="0" max="3"></div>
+          <div class="count"><label>STRIKE</label><input type="number" id="strikes" min="0" max="2"></div>
+          <div class="count"><label>OUT</label><input type="number" id="outs" min="0" max="2"></div>
+        </div>
       </div>      
 
-    <div class="inputs">
-      <label>Inning <input type="number" id="inning" /></label>
-      <label>Outs <input type="number" id="outs" min="0" max="2" /></label>
-      <label>Batter Stance
-        <select id="stand">
-          <option value="0">Left</option>
-          <option value="1">Right</option>
-        </select>
-      </label>
-      <label>Is Home Team?
-        <select id="isHome">
-          <option value="0">No</option>
-          <option value="1">Yes</option>
-        </select>
-      </label>
-      <label>Pitcher
-        <select id="pitcherId">
-          <option value="123456">Pitcher A</option>
-          <option value="654321">Pitcher B</option>
-        </select>
-      </label>
-      <label>Batter
-        <select id="batterId">
-          <option value="234567">Batter A</option>
-          <option value="765432">Batter B</option>
-        </select>
-      </label>
-    </div>
-
-    <button onclick="predictPitch()">Predict Pitch</button>
-    <div id="result"></div>
-  </div>
+    <!-- Field + Side Panels -->
+    <div class="layout">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+          <div class="group">
+            <label>Batter Stance</label>
+            <div class="stance-toggle">
+              <button onclick="setStance(0)" id="standL">L</button>
+              <button onclick="setStance(1)" id="standR">R</button>
+            </div>
+          </div>
+          <label>Pitcher
+            <select id="pitcherId">
+                <option value="605400">Aaron Nola [Phillies]</option>
+                <option value="641927">Bailey Ober [Twins]</option>
+                <option value="605483">Blake Snell [Giants]</option>
+                <option value="694297">Brandon Pfaadt [Diamondbacks]</option>
+                <option value="656271">Brock Burke [Angels]</option>
+                <option value="663554">Casey Mize [Tigers]</option>
+                <option value="519242">Chris Sale [Braves]</option>
+                <option value="669203">Corbin Burnes [Orioles]</option>
+                <option value="664285">Framber Valdez [Astros]</option>
+                <option value="642547">Freddy Peralta [Brewers]</option>
+                <option value="694813">Gavin Stone [Dodgers]</option>
+                <option value="669923">George Kirby [Mariners]</option>
+                <option value="543037">Gerrit Cole [Yankees]</option>
+                <option value="683004">Jack Leiter [Rangers]</option>
+                <option value="663623">Jake Irvin [Nationals]</option>
+                <option value="656546">Jeff Hoffman [Phillies]</option>
+                <option value="605397">Joe Musgrove [Padres]</option>
+                <option value="623352">Josh Hader [Padres]</option>
+                <option value="657006">Justin Steele [Cubs]</option>
+                <option value="434378">Justin Verlander [Mets]</option>
+                <option value="445276">Kenley Jansen [Red Sox]</option>
+                <option value="592332">Kevin Gausman [Blue Jays]</option>
+                <option value="673540">Kodai Senga [Mets]</option>
+                <option value="680694">Kyle Bradish [Orioles]</option>
+                <option value="669302">Logan Gilbert [Mariners]</option>
+                <option value="657277">Logan Webb [Giants]</option>
+                <option value="112116">Luis Castillo [Mariners]</option>
+                <option value="592426">Luke Jackson [Giants]</option>
+                <option value="608331">Max Fried [Braves]</option>
+                <option value="571945">Miles Mikolas [Cardinals]</option>
+                <option value="641154">Pablo López [Twins]</option>
+                <option value="694973">Paul Skenes [Pirates]</option>
+                <option value="519151">Ryan Pressly [Astros]</option>
+                <option value="676254">Ryan Walker [Giants]</option>
+                <option value="666171">Ryan Zeferjahn [Red Sox]</option>
+                <option value="684007">Shota Imanaga [Cubs]</option>
+                <option value="543243">Sonny Gray [Cardinals]</option>
+                <option value="675911">Spencer Strider [Braves]</option>
+                <option value="656557">Tanner Houck [Red Sox]</option>
+                <option value="656945">Tanner Scott [Marlins]</option>
+                <option value="669373">Tarik Skubal [Tigers]</option>
+                <option value="542881">Tyler Anderson [Angels]</option>
+                <option value="607192">Tyler Glasnow [Rays]</option>
+                <option value="808967">Yoshinobu Yamamoto [Yankees]</option>
+                <option value="668678">Zac Gallen [Diamondbacks]</option>                
+            </select>
+          </label>
+        </div>
+      
+        <!-- Field View -->
+        <div class="field">
+          <div class="base" id="base1">1B</div>
+          <div class="base" id="base2">2B</div>
+          <div class="base" id="base3">3B</div>
+        </div>
+      
+        <!-- Right Sidebar -->
+        <div class="sidebar">
+          <div id="resultBox">
+            <label>Pitch Prediction:</label>
+            <div id="result">API RESULTS</div>
+          </div>
+          <button onclick="predictPitch()">Predict Pitch</button>
+        </div>
+      </div>
 
   <script src="script.js"></script>
-</body>
+  <footer style="margin-top: 10px; background-color: #000000; color: white; padding: 20px 20px 30px; width: 100%;">
+    <div style="max-width: 1500px; margin: 0 auto; text-align: center; font-size: 16px;">
+      <p style="margin-bottom: 10px; font-weight: bold; font-size: 16px;">
+        ⚾ MLB Pitch Predictor
+      </p>
+      <p style="margin: 8px 0;">
+        Built with Python, Flask, scikit-learn, XGBoost, Pandas, pybaseball, and JavaScript.
+      </p>
+      <p style="margin: 8px 0;">
+        Enter a game scenario (score, count, inning, runners, pitcher, etc.) and click <strong>Predict Pitch</strong> to see the most likely pitch type and average speed.
+      </p>
+      <p style="margin: 8px 0;">
+        Trained on 2024 Statcast data. Results reflect model probabilities, not actual pitch calls. For demo purposes only.
+      </p>
+      <p style="margin-top: 15px;">
+        <a href="https://github.com/learned2/mlb-pitch" target="_blank" style="color: #00ff00; text-decoration: none;">
+          View on GitHub →
+        </a>
+      </p>
+    </div>
+  </footer>
+</body>  
 </html>
-v
