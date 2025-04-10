@@ -19,6 +19,40 @@ or
 - Dropdown with real pitcher names
 - Hosted on GitHub Pages + Flask API on Render
 
+## How the Machine Learning Model Works
+
+The pitch prediction system uses a supervised machine learning classifier trained on 2024 Statcast data using scikit-learn and XGBoost.
+
+### Pitch Type Group Classification
+
+The model predicts one of four grouped pitch categories:
+
+- **Fastball** — includes Four-Seam Fastball, Two-Seam Fastball, Sinker, Cutter, Split-Finger Fastball
+- **Breaking** — includes Slider, Sweeper, Curveball, Knuckle Curve
+- **Offspeed** — includes Changeup, Screwball
+- **Other** — includes Knuckleball, Eephus, Forkball
+
+#### Features Used for Prediction:
+- Batter stance (left or right)
+- Count (balls and strikes)
+- Inning
+- Number of outs
+- Runners on base (1st, 2nd, and 3rd)
+- Score differential (pitcher's team score minus opponent's)
+- Pitcher ID
+
+To improve generalization, the model was trained using `class_weight='balanced'` to correct for pitch type imbalance (fastballs were overrepresented). Through feature engineering and careful model tuning, overall classification accuracy improved from 31% to 53%.
+
+Additional features such as `pitch_count`, `batter_id`, and `is_home_team` were removed during optimization due to low contribution or noise.
+
+---
+
+### Pitch Velocity Estimation
+
+Rather than training a regression model, average pitch speeds (MPH) were precomputed using historical Statcast data.
+
+For every `(pitcher_id, pitch_type_group)` pair, the mean `release_speed` was calculated and stored. When the model predicts a pitch type, the corresponding average velocity is retrieved and displayed in the app.
+
 ## ⚔️ Challenges Overcome
 
 - ⚙️ Matching game situation data (score, inning, base runners) to real-world model input
