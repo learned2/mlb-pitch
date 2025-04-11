@@ -6,8 +6,6 @@
  
 ## 🎥 Live Demo
 
-[🔗 Try it here](https://your-app-url.com)  
-or  
 [📦 Watch the video demo](https://youtu.be/d4T4BpZplOo)
 
 ![screenshot](demo/demo-screenshot.png)
