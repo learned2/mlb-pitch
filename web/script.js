@@ -30,7 +30,7 @@ function toggleBase(baseId) {
       pitcher_id: parseInt(document.getElementById("pitcherId").value)
     };
   
-    fetch("https://mlb-pitch-api.onrender.com/predict", {
+    fetch("https://mlb-pitch.onrender.com/predict", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
