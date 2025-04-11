@@ -4,7 +4,7 @@ import numpy as np
 from flask_cors import CORS
 import json
 
-with open("../data/avg_velocity_lookup.json", "r") as f:
+with open("avg_velocity_lookup.json", "r") as f:
     velocity_data = json.load(f)
 
 # Build a quick lookup dictionary
@@ -17,9 +17,9 @@ app = Flask(__name__)
 CORS(app)  # ✅ This will allow all domains (safe for development)
 
 # Load model, scaler, label encoder
-model = joblib.load("../results/xgb_pitch_predictor_model.pkl")
-scaler = joblib.load("../results/scaler.pkl")
-encoder = joblib.load("../results/group_label_encoder.pkl")
+model = joblib.load("xgb_pitch_predictor_model.pkl")
+scaler = joblib.load("scaler.pkl")
+encoder = joblib.load("group_label_encoder.pkl")
 
 @app.route("/predict", methods=["POST"])
 def predict():
