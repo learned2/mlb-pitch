@@ -1,6 +1,9 @@
 # ⚾ MLB Pitch Predictor
 > Predict pitch type and velocity using live game situations, machine learning, and custom-designed game logic.
 
+
+***IMPORTANT***: After completing the model, the .pkl files were too large for hosting the API on Render. To see how the model works please refer to the live demo video(s) below to see how the Model works. 
+ 
 ## 🎥 Live Demo
 
 [🔗 Try it here](https://your-app-url.com)  
